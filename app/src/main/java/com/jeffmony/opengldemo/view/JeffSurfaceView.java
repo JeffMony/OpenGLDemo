@@ -1,10 +1,12 @@
-package com.jeffmony.opengldemo;
+package com.jeffmony.opengldemo.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+
+import com.jeffmony.opengldemo.egl.EglHelper;
 
 import java.lang.ref.WeakReference;
 

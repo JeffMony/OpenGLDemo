@@ -9,6 +9,8 @@ import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.jeffmony.opengldemo.render.TriangleRenderer;
+
 public class TriangleActivity extends AppCompatActivity {
 
     private GLSurfaceView mGLSurfaceView;

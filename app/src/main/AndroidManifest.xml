@@ -19,6 +19,7 @@
         <activity android:name=".EglCreateActivity" />
         <activity android:name=".TriangleActivity" />
         <activity android:name=".EglSurfaceViewActivity" />
+        <activity android:name=".CustomTextureActivity" />
     </application>
 
 </manifest>

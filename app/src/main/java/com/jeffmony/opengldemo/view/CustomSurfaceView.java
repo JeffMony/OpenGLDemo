@@ -1,7 +1,9 @@
-package com.jeffmony.opengldemo;
+package com.jeffmony.opengldemo.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
+
+import com.jeffmony.opengldemo.render.CustomRender;
 
 public class CustomSurfaceView extends JeffSurfaceView {
     public CustomSurfaceView(Context context) {

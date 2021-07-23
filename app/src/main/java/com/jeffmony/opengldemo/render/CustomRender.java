@@ -1,6 +1,8 @@
-package com.jeffmony.opengldemo;
+package com.jeffmony.opengldemo.render;
 
 import android.opengl.GLES20;
+
+import com.jeffmony.opengldemo.view.JeffSurfaceView;
 
 public class CustomRender implements JeffSurfaceView.JeffRender {
 

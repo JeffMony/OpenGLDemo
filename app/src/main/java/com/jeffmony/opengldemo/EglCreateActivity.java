@@ -7,6 +7,8 @@ import android.view.SurfaceView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.jeffmony.opengldemo.egl.EglHelper;
+
 public class EglCreateActivity extends AppCompatActivity {
 
     private SurfaceView mSurfaceView;

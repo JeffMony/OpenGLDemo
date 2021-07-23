@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button mEglCreateBtn;
     private Button mTriangleBtn;
     private Button mCustomSurfaceViewBtn;
+    private Button mCustomTextureBtn;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -22,10 +23,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mEglCreateBtn = findViewById(R.id.eglcreate_btn);
         mTriangleBtn = findViewById(R.id.triangle_btn);
         mCustomSurfaceViewBtn = findViewById(R.id.glsurfaceview_btn);
+        mCustomTextureBtn = findViewById(R.id.customTexture_btn);
 
         mEglCreateBtn.setOnClickListener(this);
         mTriangleBtn.setOnClickListener(this);
         mCustomSurfaceViewBtn.setOnClickListener(this);
+        mCustomTextureBtn.setOnClickListener(this);
     }
 
     @Override
@@ -38,6 +41,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(intent);
         } else if (v == mCustomSurfaceViewBtn) {
             Intent intent = new Intent(MainActivity.this, EglSurfaceViewActivity.class);
+            startActivity(intent);
+        } else if (v == mCustomTextureBtn) {
+            Intent intent = new Intent(MainActivity.this, CustomTextureActivity.class);
             startActivity(intent);
         }
     }

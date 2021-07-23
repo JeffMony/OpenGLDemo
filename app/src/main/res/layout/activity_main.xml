@@ -31,4 +31,13 @@
         android:layout_width="150dp"
         android:layout_height="wrap_content" />
 
+    <Button
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center"
+        android:text="绘制图片纹理"
+        android:id="@+id/customTexture_btn"
+        android:background="@color/colorPrimary"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content" />
+
 </LinearLayout>
