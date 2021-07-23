@@ -43,6 +43,7 @@ public class CustomTextureRender implements JeffSurfaceView.JeffRender {
     private int mProgram;
     private int mTextureId;
     private int mSampler;
+    private int mVboId;
 
     public CustomTextureRender(Context context) {
         mContext = context;
@@ -70,6 +71,17 @@ public class CustomTextureRender implements JeffSurfaceView.JeffRender {
         mFPosition = GLES20.glGetAttribLocation(mProgram, "f_Position");
         mSampler = GLES20.glGetUniformLocation(mProgram, "sTexture");
 
+        //VBO buffer模块
+        int[] vbos = new int[1];
+        //第一个参数是绘制的个数
+        GLES20.glGenBuffers(1, vbos, 0);
+        mVboId = vbos[0];
+        GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, mVboId);
+        GLES20.glBufferData(GLES20.GL_ARRAY_BUFFER, mVertexData.length * 4 + mFragmentData.length * 4, null, GLES20.GL_STATIC_DRAW);
+        GLES20.glBufferSubData(GLES20.GL_ARRAY_BUFFER, 0, mVertexData.length * 4, mVertexBuffer);
+        GLES20.glBufferSubData(GLES20.GL_ARRAY_BUFFER, mVertexData.length * 4, mFragmentData.length * 4, mFragmentBuffer);
+        GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, 0);
+
         int[] textureIds = new int[1];
         GLES20.glGenTextures(1, textureIds, 0);
         mTextureId = textureIds[0];
@@ -86,7 +98,6 @@ public class CustomTextureRender implements JeffSurfaceView.JeffRender {
         Bitmap bitmap = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.output);
         GLUtils.texImage2D(GLES20.GL_TEXTURE_2D, 0, bitmap, 0);
         bitmap.recycle();
-        bitmap = null;
         GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, 0);  //解绑
     }
 
@@ -102,13 +113,19 @@ public class CustomTextureRender implements JeffSurfaceView.JeffRender {
         GLES20.glUseProgram(mProgram);
 
         GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, mTextureId);
+
+        GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, mVboId);
+
+
         GLES20.glEnableVertexAttribArray(mVPosition);
-        GLES20.glVertexAttribPointer(mVPosition, 2, GLES20.GL_FLOAT, false, 8, mVertexBuffer);
+        GLES20.glVertexAttribPointer(mVPosition, 2, GLES20.GL_FLOAT, false, 8, 0);
 
         GLES20.glEnableVertexAttribArray(mFPosition);
-        GLES20.glVertexAttribPointer(mFPosition, 2, GLES20.GL_FLOAT, false, 8, mFragmentBuffer);
+        GLES20.glVertexAttribPointer(mFPosition, 2, GLES20.GL_FLOAT, false, 8, mVertexData.length * 4);
 
         GLES20.glDrawArrays(GLES20.GL_TRIANGLE_STRIP, 0, 4);
+
+        GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, 0);
         GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, 0);
     }
 }
